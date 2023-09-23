@@ -175,9 +175,10 @@ document.addEventListener("DOMContentLoaded", function () {
   .then(response => response.json())
   .then(data => {
     if (Array.isArray(data) && data.length > 0 && data[0].hasOwnProperty('name')) {
+				console.log("data retrieved");
       populateCategoryList(data);
     } else {
-      console.error('Invalid response data structure.');
+      alert('Invalid response data structure.');
     }
   })
   .catch(error => {
