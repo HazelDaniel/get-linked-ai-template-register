@@ -1,0 +1,439 @@
+@font-face {
+  font-family: unica_one_regular;
+  src: url("../fonts/UnicaOne-Regular.ttf") format("woff");
+}
+@font-face {
+  font-family: clash_display_regular;
+  src: url("../fonts/ClashDisplay-Medium.otf") format("woff");
+}
+@font-face {
+  font-family: clash_display_light;
+  src: url("../fonts/ClashDisplay-Regular.otf") format("woff");
+}
+@font-face {
+  font-family: montserrat_regular;
+  src: url("../fonts/Montserrat-Medium.ttf");
+}
+@font-face {
+  font-family: montserrat_light;
+  src: url("../fonts/Montserrat-Light.ttf");
+}
+header {
+  border-bottom: none;
+}
+header .logo-div {
+  display: block !important;
+}
+
+.register {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  display: block;
+  width: 100%;
+  padding-top: 7rem;
+  margin-bottom: 0;
+}
+@media screen and (min-width: 992px) {
+  .register {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+.register-left {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+@media screen and (min-width: 992px) {
+  .register-left {
+    width: 60%;
+  }
+  .register-left img {
+    display: block;
+    width: 100%;
+    transform: scale(0.8);
+  }
+}
+.register-right {
+  position: relative;
+  width: 80%;
+  max-width: 42rem !important;
+  min-height: 40rem;
+  margin: 0 auto;
+  margin-bottom: 20rem;
+  padding-bottom: 10%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border: 0.2rem solid transparent;
+  background-color: var(--text-color-trans);
+  backdrop-filter: blur(2rem);
+  border-radius: 1rem;
+}
+@media screen and (max-width: 991px) {
+  .register-right {
+    background-color: unset;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right {
+    align-self: start;
+    margin: unset;
+    width: 80%;
+    margin-top: 0;
+  }
+}
+.register-right .register-contact-form-container {
+  width: 80%;
+}
+.register-right .register-contact-form-container > h3 {
+  font-size: 2rem;
+  color: var(--accent-color-fade);
+}
+@media screen and (max-width: 677px) {
+  .register-right .register-contact-form-container > h3 {
+    display: none;
+  }
+}
+.register-right .register-contact-form-container > h3 + p {
+  font-size: 1.3rem;
+}
+.register-right .register-contact-form-container > h3 + p + h2 {
+  font-size: 2.2rem;
+  font-family: montserrat_regular;
+  color: var(--text-color);
+  font-weight: lighter;
+  margin-bottom: 7rem;
+}
+.register-right .register-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  grid-row-gap: 5rem;
+}
+@media (min-width: 992px) {
+  .register-right .register-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.register-right .register-form label {
+  position: absolute;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  font-family: montserrat_regular;
+  color: var(--text-color);
+}
+.register-right .register-form label:nth-of-type(1) {
+  top: 14%;
+  z-index: 5;
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form label:nth-of-type(1) {
+    top: 24.5%;
+    left: 10%;
+  }
+}
+@media screen and (max-width: 438px) {
+  .register-right .register-form label:nth-of-type(1) {
+    top: 17%;
+  }
+}
+@media screen and (min-width: 678px) and (max-width: 991px) {
+  .register-right .register-form label:nth-of-type(1) {
+    top: 18%;
+  }
+}
+.register-right .register-form label:nth-of-type(2) {
+  top: 25%;
+}
+@media screen and (max-width: 438px) {
+  .register-right .register-form label:nth-of-type(2) {
+    top: 28%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form label:nth-of-type(2) {
+    top: 24.5%;
+    left: 52%;
+  }
+}
+@media screen and (min-width: 678px) and (max-width: 991px) {
+  .register-right .register-form label:nth-of-type(2) {
+    top: 28.5%;
+  }
+}
+.register-right .register-form label:nth-of-type(3) {
+  top: 36%;
+}
+@media screen and (max-width: 438px) {
+  .register-right .register-form label:nth-of-type(3) {
+    top: 39%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form label:nth-of-type(3) {
+    top: 37%;
+  }
+}
+@media screen and (min-width: 678px) and (max-width: 991px) {
+  .register-right .register-form label:nth-of-type(3) {
+    top: 38%;
+  }
+}
+.register-right .register-form label:nth-of-type(4) {
+  top: 47%;
+}
+@media screen and (max-width: 438px) {
+  .register-right .register-form label:nth-of-type(4) {
+    top: 50%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form label:nth-of-type(4) {
+    left: 52%;
+    top: 37%;
+  }
+}
+@media screen and (min-width: 678px) and (max-width: 991px) {
+  .register-right .register-form label:nth-of-type(4) {
+    top: 48%;
+  }
+}
+.register-right .register-form label:nth-of-type(5) {
+  top: 58%;
+}
+@media screen and (max-width: 438px) {
+  .register-right .register-form label:nth-of-type(5) {
+    top: 61%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form label:nth-of-type(5) {
+    top: 50%;
+  }
+}
+.register-right .register-form label:nth-of-type(6) {
+  top: 58%;
+  left: 50%;
+}
+@media screen and (max-width: 438px) {
+  .register-right .register-form label:nth-of-type(6) {
+    top: 61%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form label:nth-of-type(6) {
+    top: 50%;
+    left: 52%;
+  }
+}
+.register-right .register-form input {
+  position: relative;
+  height: 4rem;
+  border-radius: 0.3rem;
+  border: 0.15rem solid var(--text-color);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--text-color-trans);
+  color: var(--text-color);
+}
+@media screen and (max-width: 991px) {
+  .register-right .register-form input {
+    display: block;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .register-right .register-form input {
+    flex-basis: unset;
+  }
+}
+.register-right .register-form input[type=submit] {
+  grid-column: 1/-1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border: unset;
+  font-weight: bolder;
+  background: linear-gradient(to right, var(--accent-color-thick) 0%, var(--secondary-color) 100%);
+}
+.register-right .register-form input[type=checkbox] {
+  margin: 0;
+  height: 2rem;
+  position: absolute;
+  content: "";
+  width: 2rem;
+  bottom: 15%;
+}
+@media screen and (min-width: 678px) and (max-width: 991px) {
+  .register-right .register-form input[type=checkbox] {
+    bottom: 20%;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form input[type=checkbox] {
+    bottom: 25%;
+  }
+}
+@media screen and (min-width: 991px) and (max-width: 1305px) {
+  .register-right .register-form input[type=checkbox] {
+    bottom: 22% !important;
+  }
+}
+.register-right .register-form input[type=checkbox] + span {
+  bottom: 15%;
+  left: 20%;
+  font-size: 1rem;
+  width: 50%;
+  color: var(--text-color);
+  font-weight: bolder;
+  position: absolute;
+  content: "";
+  font-family: montserrat_regular;
+}
+@media screen and (min-width: 678px) and (max-width: 991px) {
+  .register-right .register-form input[type=checkbox] + span {
+    bottom: 20%;
+  }
+}
+@media screen and (min-width: 991px) and (max-width: 1305px) {
+  .register-right .register-form input[type=checkbox] + span {
+    bottom: 22% !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .register-right .register-form input[type=checkbox] + span {
+    bottom: 25%;
+  }
+}
+.register-right .register-form select {
+  height: 4rem;
+}
+@media screen and (max-width: 991px) {
+  .register-right .register-form select {
+    width: 49%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .register-right .register-form select:nth-of-type(2) {
+    transform: translate(102%, -225%);
+  }
+}
+@media screen and (max-width: 991px) {
+  .register-right .register-form h3 {
+    margin-top: -10rem !important;
+  }
+}
+
+.register-modal {
+  height: 100vh;
+  min-height: 40rem;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+  background-color: var(--dark-color-trans);
+  backdrop-filter: blur(0.2rem);
+  display: none;
+}
+.register-modal .modal-body {
+  height: 70%;
+  width: 80%;
+  max-width: 50rem !important;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  position: relative;
+  border: 0.15rem solid var(--accent-color-fade);
+}
+.register-modal .modal-body .star-floater:nth-of-type(1) {
+  left: unset;
+  top: -5%;
+  right: -3%;
+}
+.register-modal .modal-body .star-floater:nth-of-type(2) {
+  top: unset;
+  left: unset;
+  right: 5%;
+  bottom: 3%;
+  transform: scale(0.8);
+}
+.register-modal .modal-body > h3 {
+  margin: 0 auto;
+  font-weight: lighter;
+  font-size: 2rem;
+}
+.register-modal .modal-body > h3:nth-of-type(1) {
+  transform: translateY(200%);
+  z-index: 2;
+}
+.register-modal .modal-body > h3:nth-of-type(2) {
+  transform: translateY(250%);
+  z-index: 2;
+}
+.register-modal .modal-body > p {
+  margin: 0 auto;
+  transform: translateY(220%);
+  width: 60%;
+  text-align: center;
+  height: max-content;
+}
+@media screen and (max-width: 577px) {
+  .register-modal .modal-body > p {
+    transform: translateY(180%);
+  }
+}
+.register-modal .modal-body .back {
+  width: 8rem;
+  height: 3.5rem;
+  z-index: 2;
+  width: 80%;
+  transform: translateY(320%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-family: montserrat_regular;
+  text-transform: capitalize;
+  color: var(--text-color);
+  background: linear-gradient(to right, var(--accent-color-thick) 0%, var(--secondary-color) 60%);
+  cursor: pointer;
+  border-radius: 0.3rem;
+}
+.register-modal .modal-body > img {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+}
+.register-modal .modal-body > img:nth-of-type(1) {
+  transform: scale(0.7);
+  left: 8%;
+  top: -7%;
+}
+.register-modal .modal-body > img:nth-of-type(2) {
+  height: 30%;
+  z-index: 2;
+  transform: scale(1.2, 1.3);
+  left: 48%;
+  top: 12%;
+}
+
+/*# sourceMappingURL=register.css.map */
