@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	const baseUri = 'https://backend.getlinked.ai/';
 	const registerForm = document.querySelector('.register-form');
 	const categoryListSelect = document.getElementById('dds1');
+	const registerModal = document.querySelector(".register-modal");
+	const registerModalNavigator = registerModal.querySelector(".back");
 	let toggleCount = 0;
 
 	const registerTransformObject = {
@@ -15,9 +17,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		"UI/UX": 3
 	}
 
+	const renderRegisterModal = function () {
+		if (registerModal)
+			registerModal.classList.remove("hidden");
+	}
+
+	const handleRegisterModalRender = function () {
+		if (registerModalNavigator) {
+			registerModalNavigator.addEventListener('click', function () {
+				registerModal.classList.add("hidden");
+				window.history.back();
+			});
+		}
+	}
+
 	const handleToastRender = function(message) {
 		const toast = document.querySelector('.toast');
-
 
 		if (toast) {
 			const pElement = toast.querySelector('p');
@@ -168,7 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		const formData = new FormData(form);
 		if (formData.has("privacy_poclicy_accepted")) {
-			console.log("the field exists");
 			if (formData.get("privacy_poclicy_accepted") === "on")
 			{
 				formData.set("privacy_poclicy_accepted", true);
@@ -188,10 +202,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 
-		for (const [key, value] of formData.entries()) {
-			console.log(`key :${key} \n value : ${value}`);
-		}
-
 		fetch(baseUri + "hackathon/registration", {
 			method: 'POST',
 			headers: {
@@ -202,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 			.then(response => {
 				if (response.ok) {
-					//this is where i display the success page
+					//this is where i should display the modal page but the server is not responding properly
 					console.log("Successfully submitted");
 				} else {
 					handleToastRender("Oops! something went wrong with the submission");
@@ -212,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			.catch(error => {
 				console.error("Failed to submit:", error);
 			});
+		renderRegisterModal();
 	}
 
 
@@ -221,11 +232,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
+	const handleSuccessModal = function() {
+
+	}
+
 	// driver code
 	initHeaderLinks();
 	handleHamburgerClick();
 	initPopulateCategories();
+	handleRegisterModalRender();
 	handleRegistrationForm();
 	initBounce();
+	handleSuccessModal();
 
 });

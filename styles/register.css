@@ -347,6 +347,8 @@ header .logo-div {
   z-index: 5;
   background-color: var(--dark-color-trans);
   backdrop-filter: blur(0.2rem);
+}
+.register-modal.hidden {
   display: none;
 }
 .register-modal .modal-body {

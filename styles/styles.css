@@ -147,7 +147,11 @@ body.contact-body > .solar_flare:nth-of-type(4) {
 }
 body .toast {
   position: fixed;
+  margin: 0 auto;
+  align-self: center;
   width: max-content;
+  display: none;
+  width: 70vw;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -161,6 +165,12 @@ body .toast {
   backdrop-filter: blur(10rem);
   border-radius: 0.5rem;
   border: 0.2rem solid var(--accent-color-fade);
+}
+@media screen and (max-width: 557px) {
+  body .toast {
+    right: -200%;
+    width: 90vw;
+  }
 }
 body .toast.slide-in {
   animation-name: slide_in_toast;
@@ -212,10 +222,10 @@ body .toast .cancel span:nth-of-type(2) {
     right: -100%;
   }
   20%, 50%, 60%, 70% {
-    right: 20%;
+    right: 10%;
   }
   80% {
-    right: 18%;
+    right: 20%;
   }
   to {
     right: 110vw;
