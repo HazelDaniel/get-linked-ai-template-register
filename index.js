@@ -5,8 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
 	const hamburgerIcon = document.querySelector("header").querySelector(".hamburger");
 	const headerMenu = document.querySelector("header").querySelector(".header-menu");
 	const baseUri = 'https://backend.getlinked.ai/';
+	const registerForm = document.querySelector('.register-form');
 	const categoryListSelect = document.getElementById('dds1');
 	let toggleCount = 0;
+
+	const registerTransformObject = {
+		"MOBILE" : 1,
+		"WEB": 2,
+		"UI/UX": 3
+	}
 
 	const handleToastRender = function(message) {
 		const toast = document.querySelector('.toast');
@@ -98,19 +105,15 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 
-// Function to populate the "category_list" select element
 	function populateCategoryList(categories) {
-		// Clear existing options
 		categoryListSelect.innerHTML = '';
 
-		// Create and add default option
 		const defaultOption = document.createElement('option');
 		defaultOption.value = '';
 		defaultOption.text = 'Select your category';
 		defaultOption.disabled = true;
 		categoryListSelect.appendChild(defaultOption);
 
-		// Populate options with category names
 		categories.forEach(category => {
 			const option = document.createElement('option');
 			option.value = category.name;
@@ -153,11 +156,76 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	}
 
+	const handleRegisterFormSubmit = function(event) {
+		event.preventDefault();
+
+		const form = document.querySelector('.register-form');
+
+		if (!form.checkValidity()) {
+			handleToastRender("Form fields not correctly provided!");
+			return;
+		}
+
+		const formData = new FormData(form);
+		if (formData.has("privacy_poclicy_accepted")) {
+			console.log("the field exists");
+			if (formData.get("privacy_poclicy_accepted") === "on")
+			{
+				formData.set("privacy_poclicy_accepted", true);
+			}
+			else
+			{
+				formData.set("privacy_poclicy_accepted", false);
+			}
+		}
+
+		for (const [key, value] of formData.entries()) {
+			if (key === "category") {
+				formData.set(key, +registerTransformObject[value]);
+			}
+			if (key === "group_size") {
+				formData.set(key, +value);
+			}
+		}
+
+		for (const [key, value] of formData.entries()) {
+			console.log(`key :${key} \n value : ${value}`);
+		}
+
+		fetch(baseUri + "hackathon/registration", {
+			method: 'POST',
+			headers: {
+			"Content-Type": "application/json",
+			},
+			redirect: "follow",
+			body: JSON.stringify(formData),
+		})
+			.then(response => {
+				if (response.ok) {
+					//this is where i display the success page
+					console.log("Successfully submitted");
+				} else {
+					handleToastRender("Oops! something went wrong with the submission");
+					console.error("Failed to submit");
+				}
+			})
+			.catch(error => {
+				console.error("Failed to submit:", error);
+			});
+	}
+
+
+	const handleRegistrationForm = function() {
+		if (registerForm) {
+			registerForm.addEventListener('submit', handleRegisterFormSubmit);
+		}
+	}
 
 	// driver code
 	initHeaderLinks();
 	handleHamburgerClick();
 	initPopulateCategories();
+	handleRegistrationForm();
 	initBounce();
 
 });
