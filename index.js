@@ -175,6 +175,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		event.preventDefault();
 
 		const form = document.querySelector('.register-form');
+		if (!form)
+			return;
 
 		if (!form.checkValidity()) {
 			handleToastRender("Form fields not correctly provided!");
@@ -222,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			.catch(error => {
 				console.error("Failed to submit:", error);
 			});
+		form.reset();
 		renderRegisterModal();
 	}
 
