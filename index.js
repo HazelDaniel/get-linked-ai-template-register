@@ -4,9 +4,32 @@ document.addEventListener("DOMContentLoaded", function () {
 	const navigationLinks = document.querySelectorAll('.header-link a');
 	const hamburgerIcon = document.querySelector("header").querySelector(".hamburger");
 	const headerMenu = document.querySelector("header").querySelector(".header-menu");
-	const heroMotto = document.querySelector("section.hero").querySelector("h3");
 	const baseUri = 'https://backend.getlinked.ai/';
+	const categoryListSelect = document.getElementById('dds1');
 	let toggleCount = 0;
+
+	const handleToastRender = function(message) {
+		const toast = document.querySelector('.toast');
+
+
+		if (toast) {
+			const pElement = toast.querySelector('p');
+			const cancelButton = toast.querySelector('.cancel');
+
+			if (pElement)
+				pElement.textContent = message;
+			if (cancelButton)
+			{
+				cancelButton.addEventListener('click', function(){
+					toast.classList.remove('slide-in');
+				})
+			}
+			toast.classList.add('slide-in');
+		}
+		setTimeout(()=>{
+			toast.classList.remove('slide-in');
+		}, 2200);
+	};
 
 	const initBounce = function () {
 		function removeBounceClass() {
@@ -74,79 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	}
 
-	const initializeTyped = function() {
-
-		const targetElement = document.getElementById("typed-element");
-		targetElement.textContent = "";
-		const text = "Igniting a Revolution in HR Innovation";
-		let index = 0;
-		let text_string = `
-				<span>
-					<svg width="255" viewBox="0 0 255 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 14.043C43.3333 5.7097 154.4 -5.95697 254 14.043" stroke="#FF26B9" stroke-width="5"/>
-					</svg>
-				</span>
-		`;
-		let child_span = document.createElement("span");
-		child_span.innerHTML = text_string;
-		let new_el = child_span.firstElementChild;
-
-		function type() {
-			if (index < text.length) {
-				targetElement.textContent += text.charAt(index);
-				index++;
-				setTimeout(type, 100);
-			}
-			else
-			{
-				targetElement.appendChild(new_el);
-			}
-		}
-
-		const observer = new IntersectionObserver((entries, observer) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					type();
-					observer.unobserve(entry.target);
-				}
-			});
-		}); 
-		observer.observe(targetElement);
-
-  };
-
-	const initCountDown = function () {
-		function countdown() {
-			const countdownDate = new Date("2027-12-31 23:59:59").getTime(); // Set your target date and time
-			const countdownElement = document.getElementById("countdown");
-
-			function updateCountdown() {
-				const now = new Date().getTime();
-				const timeRemaining = countdownDate - now;
-
-				if (timeRemaining <= 0) {
-					clearInterval(interval);
-					countdownElement.innerHTML = "Countdown expired!";
-					return;
-				}
-
-				const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-				const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-				const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-				const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-				document.querySelector(".hero-countdown-div").querySelector(".hour-countdown").innerText = hours.toString().padStart(2, "0");
-				document.querySelector(".hero-countdown-div").querySelector(".minute-countdown").innerText = minutes.toString().padStart(2, "0");
-				document.querySelector(".hero-countdown-div").querySelector(".seconds-countdown").innerText = seconds.toString().padStart(2, "0");
-			}
-
-			updateCountdown();
-			const interval = setInterval(updateCountdown, 1000);
-		}
-
-		countdown();
-	}
-	const categoryListSelect = document.getElementById('dds1');
 
 // Function to populate the "category_list" select element
 	function populateCategoryList(categories) {
@@ -169,26 +119,45 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
-	fetch(baseUri + 'hackathon/categories-list')
-  .then(response => response.json())
-  .then(data => {
-    if (Array.isArray(data) && data.length > 0 && data[0].hasOwnProperty('name')) {
-				console.log("data retrieved");
-      populateCategoryList(data);
-    } else {
-      alert('Invalid response data structure.');
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+	function populateCategoryList(categories) {
+		categoryListSelect.innerHTML = '';
+
+		const defaultOption = document.createElement('option');
+		defaultOption.value = '';
+		defaultOption.text = 'Select your category';
+		defaultOption.disabled = true;
+		categoryListSelect.appendChild(defaultOption);
+
+		categories.forEach(category => {
+			const option = document.createElement('option');
+			option.value = category.name;
+			option.text = category.name;
+			categoryListSelect.appendChild(option);
+		});
+	}
+
+	const initPopulateCategories = function () {
+		fetch(baseUri + 'hackathon/categories-list')
+			.then(response => response.json())
+			.then(data => {
+				if (Array.isArray(data) && data.length > 0 && data[0].hasOwnProperty('name')) {
+					handleToastRender("Form Data Retrieved");
+					populateCategoryList(data);
+				} else {
+					console.error('Invalid response data structure.');
+				}
+			})
+			.catch(error => {
+				console.error('Error:', error);
+		});
+
+	}
 
 
 	// driver code
 	initHeaderLinks();
 	handleHamburgerClick();
-	initializeTyped();
-	initCountDown();
+	initPopulateCategories();
 	initBounce();
 
 });

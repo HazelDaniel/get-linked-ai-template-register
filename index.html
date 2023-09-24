@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/register.css" />
     <title> Register With Us </title>
+		<script src="index.js"></script>
 </head>
 <body class="no-footer register-body">
+    <div class="toast">
+      <p>form successfully submitted!</p>
+      <div class="cancel"><span></span><span></span></div>
+    </div>
     <header class="register">
         <div class="logo-div">
           <p class="logo-text">Register</p>
@@ -64,6 +69,16 @@
               <label for="dss2"> Group size</label>
               <select name="group_size" id="2" aria-placeholder="select your category">
                 <option value="" disabled>Select</option>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+                <option value="4" >4</option>
+                <option value="5" >5</option>
+                <option value="6" >6</option>
+                <option value="7" >7</option>
+                <option value="8" >8</option>
+                <option value="9" >9</option>
+                <option value="10" >10</option>
               </select>
               <h3 style=" grid-column: 1 / -1; font-size: 1.3rem; color: var(--accent-color-fade); font-weight: lighter; font-style: italic;">Please review your registration details before submitting</h3>
               <input type="checkbox" name="" id="">
